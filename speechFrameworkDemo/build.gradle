@@ -7,6 +7,7 @@ android {
   defaultConfig {
     applicationId "com.ubtrobot.mini.speech.framework.demo"
     minSdkVersion 24
+    //noinspection ExpiredTargetSdkVersion
     targetSdkVersion 28
     versionCode 1
     versionName "1.0"
@@ -37,6 +38,7 @@ android {
   }
 
   repositories{flatDir{dirs 'libs'}}
+  namespace 'com.ubtrobot.mini.speech.framework.demo'
 }
 
 dependencies {

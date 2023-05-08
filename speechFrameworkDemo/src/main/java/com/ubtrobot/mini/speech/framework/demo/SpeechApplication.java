@@ -18,20 +18,22 @@ import com.ubtrobot.ulog.logger.android.AndroidLoggerFactory;
 public class SpeechApplication extends AbstractSpeechApplication {
   @Override public void onCreate() {
     super.onCreate();
-    StringBuffer param = new StringBuffer();
-    param.append("appid=" + getString(R.string.app_id));
-    param.append(",");
-    param.append(SpeechConstant.ENGINE_MODE + "=" + SpeechConstant.MODE_MSC);
-    SpeechUtility.createUtility(this, param.toString());
-    DebugLog.setLogLevel(BuildConfig.DEBUG ? DebugLog.LOG_LEVEL.none : DebugLog.LOG_LEVEL.none);
-    FwLoggerFactory2.setup(
-        BuildConfig.DEBUG ? new AndroidLoggerFactory() : new InfrequentLoggerFactory());
-    startService(new Intent(this, DemoMasterService.class));
-    ServiceModules.declare(SpeechSettings.class,
+//    StringBuffer param = new StringBuffer();
+//    param.append("appid=" + getString(R.string.app_id));
+//    param.append(",");
+//    param.append(SpeechConstant.ENGINE_MODE + "=" + SpeechConstant.MODE_MSC);
+//    SpeechUtility.createUtility(this, param.toString());
+//    DebugLog.setLogLevel(BuildConfig.DEBUG ? DebugLog.LOG_LEVEL.none : DebugLog.LOG_LEVEL.none);
+//    FwLoggerFactory2.setup(
+//        BuildConfig.DEBUG ? new AndroidLoggerFactory() : new InfrequentLoggerFactory());
+//    startService(new Intent(this, DemoMasterService.class));
+      Log.d("SpeechApplication", "begin");
+      ServiceModules.declare(SpeechSettings.class,
         (aClass, moduleCreatedNotifier) -> moduleCreatedNotifier.notifyModuleCreated(
             DemoSpeech.INSTANCE.createSpeechSettings()));
+      Log.d("SpeechApplication", "ServiceModules");
 
-    ServiceModules.declare(SpeechService.class,
+      ServiceModules.declare(SpeechService.class,
         (aClass, moduleCreatedNotifier) -> ThreadPool.runOnNonUIThread(() -> {
           while (DemoSpeech.INSTANCE.createSpeechService() == null) {
             SystemClock.sleep(5);

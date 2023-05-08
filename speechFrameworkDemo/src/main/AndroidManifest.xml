@@ -4,6 +4,12 @@
     package="com.ubtrobot.mini.speech.framework.demo">
 
   <uses-permission android:name="android.permission.RECORD_AUDIO" />
+  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+  <uses-permission android:name="com.ubtrobot.master.permission.MASTER"/>
+  <uses-permission android:name="com.ubtrobot.master.permission.MASTER_SYSTEM_SERVICE"/>
+  <meta-data android:name="ubt-master-app" android:value="third_part_speechservice"/>
+
+
 
   <application
       android:name=".SpeechApplication"
